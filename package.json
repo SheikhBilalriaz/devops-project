@@ -2,7 +2,7 @@
   "name": "devops-project",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://SheikhBilalriaz.github.io/devops-project",
+  "homepage": "https://sheikhbilalriaz.github.io/devops-project/",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
