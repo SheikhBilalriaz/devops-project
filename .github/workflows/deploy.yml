@@ -1,9 +1,5 @@
 name: DevOps Project
 
-env:
-  VITE_WEATHER_API_KEY: ${{ secrets.VITE_WEATHER_API_KEY }}
-  VITE_WEATHER_API: ${{ secrets.VITE_WEATHER_API }}
-
 on:
   push:
     branches:
@@ -12,6 +8,10 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+
+    env:
+      VITE_WEATHER_API_KEY: ${{ secrets.VITE_WEATHER_API_KEY }}
+      VITE_WEATHER_API: ${{ secrets.VITE_WEATHER_API }}
 
     steps:
       - name: Checkout code
