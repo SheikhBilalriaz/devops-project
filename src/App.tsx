@@ -31,34 +31,51 @@ export default function WeatherApp() {
   const [city, setCity] = useState('');
   const [country, setCountry] = useState('');
 
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(
-      async (position) => {
-        const { latitude, longitude } = position.coords;
-        try {
-          const response = await axios.get(
-            `${BASE_URL}forecast.json?key=${API_KEY}&q=${latitude},${longitude}&days=1&aqi=no&alerts=no`
-          );
+  const fetchWeatherData = async (latitude: number, longitude: number) => {
+    try {
+      const response = await axios.get(
+        `${BASE_URL}forecast.json?key=${API_KEY}&q=${latitude},${longitude}&days=1&aqi=no&alerts=no`
+      );
 
-          const data = response.data;
-          setCity(data.location.name);
-          setCountry(data.location.country);
-          setWeather(data.current);
-          setHourly(
-            data.forecast.forecastday[0].hour.slice(
-              new Date().getHours(),
-              new Date().getHours() + 12
-            )
-          );
-          setError(null);
-        } catch (err) {
-          setError('Unable to fetch weather or location data');
-        }
+      const data = response.data;
+      setCity(data.location.name);
+      setCountry(data.location.country);
+      setWeather(data.current);
+      setHourly(
+        data.forecast.forecastday[0].hour.slice(
+          new Date().getHours(),
+          new Date().getHours() + 24
+        )
+      );
+      setError(null);
+    } catch (err) {
+      setError('Unable to fetch weather or location data');
+    }
+  };
+
+  useEffect(() => {
+    let intervalId: ReturnType<typeof setInterval>;
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+
+        // Fetch immediately
+        fetchWeatherData(latitude, longitude);
+
+        // Fetch every 10 minutes
+        intervalId = setInterval(() => {
+          fetchWeatherData(latitude, longitude);
+        }, 600000); // 600,000 ms = 10 minutes
       },
       () => {
         setError('Location access denied');
       }
     );
+
+    return () => {
+      if (intervalId) clearInterval(intervalId);
+    };
   }, []);
 
   // Chart data
