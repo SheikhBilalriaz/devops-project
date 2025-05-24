@@ -124,7 +124,8 @@ export default function WeatherApp() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 flex items-center justify-center p-8 relative overflow-hidden text-gray-100 font-sans">
+    // Inside your main container div (change gradient bg for more vibrance)
+    <div className="min-h-screen bg-gradient-to-br from-pink-900 via-purple-900 to-indigo-900 flex items-center justify-center p-8 relative overflow-hidden text-gray-100 font-sans">
       {/* Background glows */}
       <div className="absolute top-10 left-10 w-72 h-72 rounded-full bg-pink-600 opacity-30 blur-3xl animate-pulse"></div>
       <div className="absolute bottom-20 right-20 w-96 h-96 rounded-full bg-purple-600 opacity-20 blur-3xl"></div>
@@ -155,21 +156,27 @@ export default function WeatherApp() {
           </div>
 
           {/* Weather details grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { label: 'Humidity', value: `${weather?.humidity || '--'}%` },
-              { label: 'Wind', value: `${weather?.wind_kph || '--'} km/h` },
-              { label: 'Feels Like', value: `${weather?.feelslike_c || '--'}°` },
-              { label: 'UV Index', value: weather?.uv || '--' },
-              { label: 'Pressure', value: `${weather?.pressure_mb || '--'} hPa` },
-              { label: 'Visibility', value: `${weather?.vis_km || '--'} km` },
+              { label: 'Humidity', value: `${weather?.humidity ?? '--'}%` },
+              { label: 'Wind', value: `${weather?.wind_kph ?? '--'} km/h` },
+              { label: 'Feels Like', value: `${weather?.feelslike_c ?? '--'}°` },
+              { label: 'UV Index', value: weather?.uv ?? '--' },
+              { label: 'Pressure', value: `${weather?.pressure_mb ?? '--'} hPa` },
+              { label: 'Visibility', value: `${weather?.vis_km ?? '--'} km` },
             ].map(({ label, value }) => (
               <div
                 key={label}
-                className="bg-gradient-to-br from-pink-600 via-red-600 to-yellow-400 p-8 rounded-3xl shadow-xl text-center cursor-default transition-transform duration-300 hover:scale-105 hover:shadow-2xl"
+                className="
+        bg-gradient-to-tr from-pink-500 via-red-500 to-yellow-400
+        p-8 rounded-3xl shadow-lg text-center cursor-default
+        transition-transform duration-300 ease-in-out
+        hover:scale-105 hover:shadow-[0_0_25px_rgba(255,99,132,0.8)]
+        hover:brightness-110
+      "
               >
-                <p className="font-semibold text-2xl mb-6 text-white drop-shadow-lg">{label}</p>
-                <p className="text-6xl font-extrabold text-white drop-shadow-xl">{value}</p>
+                <p className="font-semibold text-2xl mb-6 text-white drop-shadow-md">{label}</p>
+                <p className="text-6xl font-extrabold text-white drop-shadow-lg">{value}</p>
               </div>
             ))}
           </div>
