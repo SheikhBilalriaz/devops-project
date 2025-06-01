@@ -74,4 +74,4 @@ Error generating stack: `+s.message+`
         transition-transform duration-300 ease-in-out
         hover:scale-105 hover:shadow-[0_0_25px_rgba(255,99,132,0.8)]
         hover:brightness-110
-      `,children:[Ct.jsx("p",{className:"font-semibold text-2xl mb-6 text-white drop-shadow-md",children:x}),Ct.jsx("p",{className:"text-6xl font-extrabold text-white drop-shadow-lg",children:N})]},x))}),o&&Ct.jsx("p",{className:"text-red-400 text-center text-xl mt-12 drop-shadow-xl",children:o})]})]})]})}Xv.createRoot(document.getElementById("root")).render(Ct.jsx($t.StrictMode,{children:Ct.jsx(jT,{})}));
+      `,children:[Ct.jsx("p",{className:"font-semibold text-2xl mb-6 text-white drop-shadow-md",children:x}),Ct.jsx("p",{className:"text-3xl font-extrabold text-white drop-shadow-lg",children:N})]},x))}),o&&Ct.jsx("p",{className:"text-red-400 text-center text-xl mt-12 drop-shadow-xl",children:o})]})]})]})}Xv.createRoot(document.getElementById("root")).render(Ct.jsx($t.StrictMode,{children:Ct.jsx(jT,{})}));
