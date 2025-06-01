@@ -176,7 +176,7 @@ export default function WeatherApp() {
       "
               >
                 <p className="font-semibold text-2xl mb-6 text-white drop-shadow-md">{label}</p>
-                <p className="text-6xl font-extrabold text-white drop-shadow-lg">{value}</p>
+                <p className="text-3xl font-extrabold text-white drop-shadow-lg">{value}</p>
               </div>
             ))}
           </div>
